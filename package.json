@@ -6,6 +6,8 @@
   "author": "JeongUkJae <jeongukjae@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "@material-ui/core": "^1.2.3",
+    "@material-ui/icons": "^1.1.0",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-scripts-ts": "2.16.0"

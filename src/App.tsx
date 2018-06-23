@@ -1,22 +1,28 @@
 import * as React from 'react';
-import './App.css';
 
-import logo from './logo.svg';
+import CssBaseline from '@material-ui/core/CssBaseline';
 
-class App extends React.Component {
-  public render() {
+import { withStyles, WithStyles } from '@material-ui/core/styles';
+
+import MenuAppBar from './components/MenuAppBar';
+
+const styles = {
+};
+
+type AppProps = WithStyles<keyof typeof styles>;
+
+class App extends React.Component<AppProps> {
+  render() {
+    const { classes } = this.props;
+
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.tsx</code> and save to reload.
-        </p>
-      </div>
+      <React.Fragment>
+        <CssBaseline />
+
+        <MenuAppBar auth={true} />
+      </React.Fragment>
     );
   }
 }
 
-export default App;
+export default withStyles(styles)(App);
