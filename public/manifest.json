@@ -1,0 +1,15 @@
+{
+  "short_name": "서울시립대학교 학점 확인",
+  "name": "서울시립대학교 학점을 여기에서 확인해보세요.",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    }
+  ],
+  "start_url": "./index.html",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
