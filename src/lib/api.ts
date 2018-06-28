@@ -14,4 +14,19 @@ const login = (userId: string, password: string) => {
     });
 };
 
+const grade = (cookie: string, userNo: string) => {
+  return axios
+    .post(
+      "http://localhost:5000/grade",
+      {
+        cookie,
+        userNo
+      }
+    )
+    .then(value => {
+      return value.data;
+    });
+};
+
 export { login };
+export { grade };

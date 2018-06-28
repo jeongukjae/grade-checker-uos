@@ -8,7 +8,8 @@ interface MarginedContainerProps {
 
 const style = {
   root: {
-    margin: '10px 15px',
+    margin: '5px 7px',
+    overflow: 'scroll'
   }
 }
 
