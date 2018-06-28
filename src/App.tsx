@@ -51,14 +51,20 @@ class App extends React.Component<AppProps, AppStates> {
   };
 
   onLogin = () => {
-    login(this.state.data.userId, this.state.data.password).then(value => {
-      // tslint:disable-next-line:no-console
-      let cookie = value.data.JSESSIONID;
+    login(this.state.data.userId, this.state.data.password)
+      .then(value => {
+        // tslint:disable-next-line:no-console
+        const cookie = value.data.JSESSIONID;
 
-      return cookie;
-    }).catch((reason) => {
-      alert(`로그인 실패 ${reason}`);
-    });
+        return cookie;
+      })
+      .catch(reason => {
+        alert(`로그인 실패 ${reason}`);
+      });
+  };
+
+  onSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
   };
 
   render() {
@@ -73,31 +79,34 @@ class App extends React.Component<AppProps, AppStates> {
           <MarginedContainer>
             <Typography variant="title">로그인</Typography>
             <MarginedContainer>
-              <TextField
-                value={this.state.data.userId}
-                label="아이디"
-                placeholder="아이디"
-                fullWidth={true}
-                margin="dense"
-                onChange={this.handleChange("userId")}
-              />
-              <TextField
-                value={this.state.data.password}
-                label="비밀번호"
-                placeholder="비밀번호"
-                fullWidth={true}
-                margin="dense"
-                type="password"
-                onChange={this.handleChange("password")}
-              />
-              <Button
-                variant="contained"
-                color="primary"
-                className={classes.submit}
-                onClick={this.onLogin}
-              >
-                로그인
-              </Button>
+              <form onSubmit={this.onSubmit}>
+                <TextField
+                  value={this.state.data.userId}
+                  label="아이디"
+                  placeholder="아이디"
+                  fullWidth={true}
+                  margin="dense"
+                  onChange={this.handleChange("userId")}
+                />
+                <TextField
+                  value={this.state.data.password}
+                  label="비밀번호"
+                  placeholder="비밀번호"
+                  fullWidth={true}
+                  margin="dense"
+                  type="password"
+                  onChange={this.handleChange("password")}
+                />
+                <Button
+                  variant="contained"
+                  type="submit"
+                  color="primary"
+                  className={classes.submit}
+                  onClick={this.onLogin}
+                >
+                  로그인
+                </Button>
+              </form>
             </MarginedContainer>
           </MarginedContainer>
         </Paper>
