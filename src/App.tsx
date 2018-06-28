@@ -81,7 +81,12 @@ class App extends React.Component<AppProps, AppStates> {
       });
   };
 
+  onLogout = () => {
+    this.setState({ auth: undefined, grade: undefined });
+  }
+
   checkGrade = () => {
+    this.setState({ grade: undefined });
     if (this.state.auth) {
       const { cookie, userNo } = this.state.auth;
       grade(cookie, userNo).then(value => {
@@ -102,7 +107,7 @@ class App extends React.Component<AppProps, AppStates> {
       <React.Fragment>
         <CssBaseline />
 
-        <MenuAppBar auth={true} />
+        <MenuAppBar auth={this.state.auth !== undefined} handleLogout={this.onLogout} handleRefresh={this.checkGrade} />
         <Paper className={classes.root} elevation={4}>
           {this.state.auth === undefined ? (
             <MarginedContainer>

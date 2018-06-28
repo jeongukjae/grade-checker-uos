@@ -10,10 +10,12 @@ import Typography from "@material-ui/core/Typography";
 import { withStyles, WithStyles } from "@material-ui/core/styles";
 
 import AccountCircle from "@material-ui/icons/AccountCircle";
+import Refresh from "@material-ui/icons/Refresh";
 
 interface MenuAppBarProps {
   auth: boolean;
   handleLogout?: () => void;
+  handleRefresh?: () => void;
 };
 
 interface MenuAppBarStates {
@@ -46,6 +48,12 @@ class MenuAppBar extends React.Component<CombinedMenuAppBarProps, MenuAppBarStat
     this.setState({ anchorEl: undefined });
   };
 
+  handleRefresh = () => {
+    if (this.props.handleRefresh) {
+      this.props.handleRefresh();
+    }
+  }
+
   handleLogout = () => {
     if (this.props.handleLogout) {
       this.props.handleLogout();
@@ -66,6 +74,13 @@ class MenuAppBar extends React.Component<CombinedMenuAppBarProps, MenuAppBarStat
           </Typography>
           {auth && (
             <div>
+              <IconButton
+                aria-haspopup="true"
+                onClick={this.handleRefresh}
+                color="inherit"
+              >
+                <Refresh />
+              </IconButton>
               <IconButton
                 aria-owns={open ? "menu-appbar" : undefined}
                 aria-haspopup="true"

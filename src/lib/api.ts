@@ -3,7 +3,7 @@ import axios from "axios";
 const login = (userId: string, password: string) => {
   return axios
     .post(
-      "http://localhost:5000/login",
+      "https://my7m4zutxg.execute-api.ap-northeast-2.amazonaws.com/production/login",
       {
         password,
         userId
@@ -17,7 +17,7 @@ const login = (userId: string, password: string) => {
 const grade = (cookie: string, userNo: string) => {
   return axios
     .post(
-      "http://localhost:5000/grade",
+      "https://my7m4zutxg.execute-api.ap-northeast-2.amazonaws.com/production/grade",
       {
         cookie,
         userNo
