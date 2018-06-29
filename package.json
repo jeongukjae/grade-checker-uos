@@ -1,6 +1,7 @@
 {
   "name": "grade-checker-uos",
   "version": "1.0.0",
+  "homepage": "https://jeongukjae.github.io/grade-checker-uos",
   "main": "index.js",
   "repository": "https://github.com/JeongUkJae/grade-checker-uos.git",
   "author": "JeongUkJae <jeongukjae@gmail.com>",
