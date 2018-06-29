@@ -83,7 +83,7 @@ class App extends React.Component<AppProps, AppStates> {
 
   onLogout = () => {
     this.setState({ auth: undefined, grade: undefined });
-  }
+  };
 
   checkGrade = () => {
     this.setState({ grade: undefined });
@@ -107,7 +107,11 @@ class App extends React.Component<AppProps, AppStates> {
       <React.Fragment>
         <CssBaseline />
 
-        <MenuAppBar auth={this.state.auth !== undefined} handleLogout={this.onLogout} handleRefresh={this.checkGrade} />
+        <MenuAppBar
+          auth={this.state.auth !== undefined}
+          handleLogout={this.onLogout}
+          handleRefresh={this.checkGrade}
+        />
         <Paper className={classes.root} elevation={4}>
           {this.state.auth === undefined ? (
             <MarginedContainer>
@@ -148,7 +152,9 @@ class App extends React.Component<AppProps, AppStates> {
               {grades !== undefined && grades.mainList !== undefined ? (
                 Array.isArray(grades.mainList.list) ? (
                   <React.Fragment>
-                    <Typography variant="subheading">{grades.strMyShreg}</Typography>
+                    <Typography variant="subheading">
+                      {grades.strMyShreg}
+                    </Typography>
                     <Typography variant="body1">
                       총 입력된 학점: {grades.mainList.list[0].tot_pnt}
                       <br />
@@ -159,7 +165,9 @@ class App extends React.Component<AppProps, AppStates> {
                   </React.Fragment>
                 ) : (
                   <React.Fragment>
-                    <Typography variant="subheading">{grades.strMyShreg}</Typography>
+                    <Typography variant="subheading">
+                      {grades.strMyShreg}
+                    </Typography>
                     <Typography variant="body1">
                       총 입력된 학점: {grades.mainList.list.tot_pnt}
                       <br />
