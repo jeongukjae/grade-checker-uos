@@ -12,56 +12,39 @@ import { withStyles, WithStyles } from "@material-ui/core/styles";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import Refresh from "@material-ui/icons/Refresh";
 
-interface MenuAppBarProps {
+interface IMenuAppBarProps {
   auth: boolean;
   handleLogout?: () => void;
   handleRefresh?: () => void;
-};
+}
 
-interface MenuAppBarStates {
+interface IMenuAppBarStates {
   anchorEl?: object;
 }
 
 const styles = {
   menuButton: {
     marginLeft: -12,
-    marginRight: 20,
+    marginRight: 20
   },
   typo: {
     flex: 1,
-    textAlign: 'left' as 'left',
-  },
+    textAlign: "left" as "left"
+  }
 };
 
-type CombinedMenuAppBarProps = MenuAppBarProps& WithStyles<keyof typeof styles>;
+type CombinedIMenuAppBarProps = IMenuAppBarProps &
+  WithStyles<keyof typeof styles>;
 
-class MenuAppBar extends React.Component<CombinedMenuAppBarProps, MenuAppBarStates> {
-  state = {
-    anchorEl: undefined,
+class MenuAppBar extends React.Component<
+  CombinedIMenuAppBarProps,
+  IMenuAppBarStates
+> {
+  public state = {
+    anchorEl: undefined
   };
 
-  handleMenu = (event: React.MouseEvent<HTMLElement>) => {
-    this.setState({ anchorEl: event.currentTarget });
-  };
-
-  handleClose = () => {
-    this.setState({ anchorEl: undefined });
-  };
-
-  handleRefresh = () => {
-    if (this.props.handleRefresh) {
-      this.props.handleRefresh();
-    }
-  }
-
-  handleLogout = () => {
-    if (this.props.handleLogout) {
-      this.props.handleLogout();
-    }
-    this.setState({ anchorEl: undefined });
-  };
-
-  render() {
+  public render() {
     const { classes, auth } = this.props;
     const { anchorEl } = this.state;
     const open = Boolean(anchorEl);
@@ -94,11 +77,11 @@ class MenuAppBar extends React.Component<CombinedMenuAppBarProps, MenuAppBarStat
                 anchorEl={anchorEl}
                 anchorOrigin={{
                   horizontal: "right",
-                  vertical: "top",
+                  vertical: "top"
                 }}
                 transformOrigin={{
                   horizontal: "right",
-                  vertical: "top",
+                  vertical: "top"
                 }}
                 open={open}
                 onClose={this.handleClose}
@@ -111,6 +94,27 @@ class MenuAppBar extends React.Component<CombinedMenuAppBarProps, MenuAppBarStat
       </AppBar>
     );
   }
+
+  private handleMenu = (event: React.MouseEvent<HTMLElement>) => {
+    this.setState({ anchorEl: event.currentTarget });
+  };
+
+  private handleClose = () => {
+    this.setState({ anchorEl: undefined });
+  };
+
+  private handleRefresh = () => {
+    if (this.props.handleRefresh) {
+      this.props.handleRefresh();
+    }
+  };
+
+  private handleLogout = () => {
+    if (this.props.handleLogout) {
+      this.props.handleLogout();
+    }
+    this.setState({ anchorEl: undefined });
+  };
 }
 
 export default withStyles(styles)(MenuAppBar);

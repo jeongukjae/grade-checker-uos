@@ -20,7 +20,7 @@ import MenuAppBar from "./components/MenuAppBar";
 
 import { grade, login } from "./lib/api";
 
-interface AppStates {
+interface IAppStates {
   auth?: {
     userNo: string;
     cookie: string;
@@ -46,10 +46,10 @@ const styles = {
   }
 };
 
-type AppProps = WithStyles<keyof typeof styles>;
+type IAppProps = WithStyles<keyof typeof styles>;
 
-class App extends React.Component<AppProps, AppStates> {
-  state: AppStates = {
+class App extends React.Component<IAppProps, IAppStates, {}> {
+  public state: IAppStates = {
     auth: undefined,
     data: {
       password: "",
@@ -59,47 +59,7 @@ class App extends React.Component<AppProps, AppStates> {
     user: undefined
   };
 
-  handleChange = (name: string) => (e: React.ChangeEvent<HTMLInputElement>) => {
-    this.setState({
-      data: update(this.state.data, { [name]: { $set: e.target.value } })
-    });
-    e.preventDefault();
-  };
-
-  onLogin = () => {
-    login(this.state.data.userId, this.state.data.password)
-      .then(value => {
-        const cookie = value.data.JSESSIONID;
-        const userNo = value.data.userNo;
-
-        this.setState({ auth: { cookie, userNo }, data: {} });
-
-        this.checkGrade();
-      })
-      .catch(reason => {
-        alert(`로그인 실패 ${reason}`);
-      });
-  };
-
-  onLogout = () => {
-    this.setState({ auth: undefined, grade: undefined });
-  };
-
-  checkGrade = () => {
-    this.setState({ grade: undefined });
-    if (this.state.auth) {
-      const { cookie, userNo } = this.state.auth;
-      grade(cookie, userNo).then(value => {
-        this.setState({ grade: value.root });
-      });
-    }
-  };
-
-  onSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-  };
-
-  render() {
+  public render() {
     const { classes } = this.props;
     const grades = this.state.grade;
 
@@ -278,6 +238,48 @@ class App extends React.Component<AppProps, AppStates> {
       </React.Fragment>
     );
   }
+
+  private handleChange = (name: string) => (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    this.setState({
+      data: update(this.state.data, { [name]: { $set: e.target.value } })
+    });
+    e.preventDefault();
+  };
+
+  private onLogin = () => {
+    login(this.state.data.userId, this.state.data.password)
+      .then(value => {
+        const cookie = value.data.JSESSIONID;
+        const userNo = value.data.userNo;
+
+        this.setState({ auth: { cookie, userNo }, data: {} });
+
+        this.checkGrade();
+      })
+      .catch(reason => {
+        alert(`로그인 실패 ${reason}`);
+      });
+  };
+
+  private onLogout = () => {
+    this.setState({ auth: undefined, grade: undefined });
+  };
+
+  private checkGrade = () => {
+    this.setState({ grade: undefined });
+    if (this.state.auth) {
+      const { cookie, userNo } = this.state.auth;
+      grade(cookie, userNo).then(value => {
+        this.setState({ grade: value.root });
+      });
+    }
+  };
+
+  private onSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+  };
 }
 
 export default withStyles(styles)(App);

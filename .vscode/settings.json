@@ -1,0 +1,10 @@
+{
+  "tslint.autoFixOnSave": true,
+  "tslint.run": "onSave",
+
+  "editor.formatOnSave": true,
+  "typescript.format.enable": true,
+
+  "files.insertFinalNewline": true,
+  "files.trimFinalNewlines": true
+}
