@@ -1,3 +1,7 @@
+/*
+그냥 div에다가 margin 먹여서 띄우는 용도.
+*/
+
 import * as React from "react";
 
 import { withStyles, WithStyles } from "@material-ui/core/styles";
