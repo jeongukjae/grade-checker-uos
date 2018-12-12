@@ -36,7 +36,7 @@ const styles = {
 type CombinedIMenuAppBarProps = IMenuAppBarProps &
   WithStyles<keyof typeof styles>;
 
-class MenuAppBar extends React.Component<
+export class MenuAppBar extends React.Component<
   CombinedIMenuAppBarProps,
   IMenuAppBarStates
 > {

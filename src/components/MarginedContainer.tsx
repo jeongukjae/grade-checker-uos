@@ -17,7 +17,7 @@ const style = {
   }
 };
 
-const MarginedContainer = (
+export const MarginedContainer = (
   props: IMarginedContainerProps & WithStyles<keyof typeof style>
 ) => <div className={props.classes.root}>{...props.children}</div>;
 
