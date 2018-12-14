@@ -22,7 +22,7 @@ export const login = (userId: string, password: string) => {
         }
       )
       .then(value => {
-        dispatch(loginComplete());
+        // dispatch(loginComplete());
         return value;
       })
       .catch(reason => {
